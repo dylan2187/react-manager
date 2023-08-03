@@ -2,18 +2,14 @@ import { useRef, useState } from 'react'
 import './App.css'
 
 function App() {
-  // const [count, setCount] = useState(0)
-  const [val, setVal] = useState('')
-  const nameRef = useRef<HTMLInputElement>(null)
-  const handleClick = () => {
-    nameRef.current?.focus()
-    setVal(nameRef.current?.value || '')
+  //受控组件
+  const [query, setQuery] = useState('')
+  const handleChange = (e: unknown) => {
+    setQuery(e.target.value)
   }
   return (
     <div className='App'>
-      <input type='text' name='' id='' ref={nameRef} />
-      <button onClick={handleClick}>button</button>
-      <p>{val}</p>
+      <input type='text' value={query} onChange={handleChange} />
     </div>
   )
 }
