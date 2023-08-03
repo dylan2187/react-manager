@@ -6,6 +6,7 @@ function App() {
   const [val, setVal] = useState('')
   const nameRef = useRef<HTMLInputElement>(null)
   const handleClick = () => {
+    nameRef.current?.focus()
     setVal(nameRef.current?.value || '')
   }
   return (
