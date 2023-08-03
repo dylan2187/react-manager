@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react'
+import React, { useContext, useMemo, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-
+const UserContext = React.createContext({ name: 'dylan' })
 function App() {
   const [count, setCount] = useState(0)
 
@@ -29,17 +29,25 @@ function App() {
     setCount(count + 1)
   }
   return (
-    <div className='App'>
-      <p>{count}</p>
-      <button onClick={handleClick}>按钮</button>
-      <p>total1: {total1()}</p>
-      <p>total2: {total2}</p>
-      <Child />
-    </div>
+    <UserContext.Provider value={{ name: 'wangkai' }}>
+      <div className='App'>
+        <p>{count}</p>
+        <button onClick={handleClick}>按钮</button>
+        <p>total1: {total1()}</p>
+        <p>total2: {total2}</p>
+        <Child />
+      </div>
+    </UserContext.Provider>
   )
 }
 const Child = () => {
-  return <div>我是子节点</div>
+  const { name } = useContext(UserContext)
+  return (
+    <div>
+      我是子节点
+      <h2>{name}</h2>
+    </div>
+  )
 }
 
 export default App
